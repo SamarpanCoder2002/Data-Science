@@ -16,14 +16,15 @@ class TrainingPipelineConfig:
 
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
-        self.database = DBClass.DATABASE_NAME
+        self.database_name = DBClass.DATABASE_NAME
         self.collection_name = DBClass.COLLECTION_NAME
         self.data_ingestion_dir = os.path.join(
             training_pipeline_config.artifact_dir, "data_ingestion")
-        self.feature_store_dir = os.path.join(
+        self.feature_store_file_path = os.path.join(
             self.data_ingestion_dir, 'feature_store', FILE_NAME)
         self.train_file_path = os.path.join(self.data_ingestion_dir, "dataset", TRAIN_FILE_NAME)
         self.test_file_path = os.path.join(self.data_ingestion_dir, "dataset", TEST_FILE_NAME)
+        self.test_size = 0.2
 
     def to_dict(self) -> dict:
         try:
