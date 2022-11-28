@@ -21,7 +21,7 @@ if __name__ == "__main__":
     print(len(json_record))
     
     # # inser converted json record to mongo db
-    # client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)
+    client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)
 
     
 
