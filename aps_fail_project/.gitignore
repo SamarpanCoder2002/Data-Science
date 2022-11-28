@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 logs
-artifact
+artifact/
 raw_data
 demotest.py
 
