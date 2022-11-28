@@ -2,12 +2,13 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
-logs
-
+artifact/
 # C extensions
 *.so
-
+demotest.py
+logs
+artifacts
+raw_data
 # Distribution / packaging
 .Python
 build/
