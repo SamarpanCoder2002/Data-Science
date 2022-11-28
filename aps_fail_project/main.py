@@ -1,18 +1,13 @@
-import pymongo
+from sensor.logger import logging
+from sensor.exception import SensorException
+from sensor.utils import get_collection_as_dataframe
+from sensor.utils.dbinfo import DBClass
+import os
+import sys
 
-# Provide the mongodb localhost url to connect python to mongodb.
-client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
 
-DATA_FILE_PATH="/config/workspace/aps_fail_project/aps_failure_training_set1.csv"
-DATABASE_NAME="aps"
-COLLECTION_NAME="sensor"
-
-if __name__ == "__main__":
-   
-    
-    # # inser converted json record to mongo db
-    data = client[DATABASE_NAME][COLLECTION_NAME].find()
-
-    # Printing all records present in the collection
-    for idx, record in enumerate(data):
-          print(f"{idx}")
+if __name__ == '__main__':
+    try:
+        get_collection_as_dataframe(DBClass.DATABASE_NAME, DBClass.COLLECTION_NAME)
+    except Exception as e:
+        print(e)
