@@ -18,10 +18,7 @@ class DataValidation:
         except Exception as e:
             raise SensorException(e, sys)
 
-    def is_required_columns_exists(self,) -> bool:
-        ...
-
-    def drop_missing_columns(self, df, threshold: float = 0.3) -> Option[pd.DataFrame]:
+    def drop_missing_columns(self, df) -> Option[pd.DataFrame]:
         """_summary_
 
         This function will drop column which contains missing value more than specified threshold
@@ -36,6 +33,7 @@ class DataValidation:
         """
 
         try:
+            threshold = self.data_validation_config.missing_threshold
             null_report = df.isna().sum()/df.shape[0]
             
             # Selecting column name which contains null values
@@ -53,6 +51,12 @@ class DataValidation:
                     
         except Exception as e:
             raise SensorException(e, sys)
-
+        
+    def is_required_columns_exists(self,base_df, present_df) -> Option[bool]:
+        try:
+            ...
+        except Exception as e:
+            raise SensorException(e, sys)
+            
     def initiate_data_validation(self) -> DataValidationArtifact:
         ...
