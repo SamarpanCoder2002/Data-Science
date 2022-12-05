@@ -6,7 +6,7 @@ artifact/
 # C extensions
 *.so
 demotest.py
-logs
+logs/
 artifacts
 raw_data
 # Distribution / packaging
