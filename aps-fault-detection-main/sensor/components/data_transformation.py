@@ -26,9 +26,9 @@ class DataTransformation:
             raise SensorException(e, sys)
 
     @classmethod
-    def get_data_transformer_object() -> Pipeline:
+    def get_data_transformer_object(clm) -> Pipeline:
         try:
-            simple_imputer = SimpleImputer(strategy='contant', fill_value=0)
+            simple_imputer = SimpleImputer(strategy='constant', fill_value=0)
             robust_scaler = RobustScaler()
 
             pipeline = Pipeline(
