@@ -7,6 +7,7 @@ from scipy.stats import ks_2samp
 from typing import Optional
 import pandas as pd
 import numpy as np
+from sensor import config
 
 import os
 import sys
@@ -146,7 +147,7 @@ class DataValidation:
             test_df_columns_status = self.is_required_columns_exists(
                 base_df=base_df, curr_df=test_df, report_key_name='missing_columns_within_test_dataset')
             
-            exclude_columns = ['class']
+            exclude_columns = [config.TARGET_COLUMN]
             base_df=utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
             train_df=utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
             test_df=utils.convert_columns_float(df=test_df, exclude_columns=exclude_columns)
