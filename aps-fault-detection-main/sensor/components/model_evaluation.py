@@ -69,26 +69,29 @@ class ModelEvaluation:
             target_df = test_df[config.TARGET_COLUMN]
             y_true = target_encoder.transform(target_df)
             
-            logging.info(f'Accuracy using previously trained model')
+            # Accuracy using previously trained model
             input_features_previous=list(transformer.feature_names_in_)
             input_arr = transformer.transform(test_df[input_features_previous])
             y_pred = model.predict(input_arr)
             
             print(f'Prediction using previous model: {target_encoder.inverse_transform(y_pred[:5])}')
             previous_model_score = f1_score(y_true=y_true, y_pred=y_pred)
+            logging.info(f'Accuracy using previously trained model: {previous_model_score}')
             
             
             
-            logging.info('Accuracy using current trained model')
+            # Accuracy using current trained model
             input_features_current=list(current_transformer.feature_names_in_)
             input_arr = current_transformer.transform(test_df[input_features_current])
             y_pred = current_model.predict(input_arr)
             y_true = current_target_encoder.transform(target_df)
             print(f'Prediction using current trained model: {current_target_encoder.inverse_transform(y_pred[:5])}')
             current_model_score = f1_score(y_true=y_true, y_pred=y_pred)
+            logging.info(f'Accuracy using current trained model: {current_model_score}')
             
             
-            if current_model_score < previous_model_score:
+            if current_model_score <= previous_model_score:
+                logging.info(f'Current trained model is not better than previous model')
                 raise Exception('Current trained model is not better than previous model')
             
             improved_accuracy = current_model_score-previous_model_score

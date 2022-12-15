@@ -13,6 +13,8 @@ raw_data
 .Python
 build/
 develop-eggs/
+prediction/
+saved_models/
 dist/
 downloads/
 eggs/
